@@ -64,6 +64,12 @@ public class Car {
         Car car3 = new Car("Honda", "City", 2021);
         Car car4 = new Car("Honda", "City", 2021, "Blue");
         System.out.println();
+
+        //elimate the error
+        System.out.println(car1);
+        System.out.println(car2);
+        System.out.println(car3);
+        System.out.println(car4);
     }
 
 
