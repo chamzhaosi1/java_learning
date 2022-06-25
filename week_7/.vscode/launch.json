@@ -1,0 +1,126 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Car",
+            "request": "launch",
+            "mainClass": "Car",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch CompSciStudentDemo",
+            "request": "launch",
+            "mainClass": "CompSciStudentDemo",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch ConstructorDemo1",
+            "request": "launch",
+            "mainClass": "ConstructorDemo1",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch ConstructorDemo2",
+            "request": "launch",
+            "mainClass": "ConstructorDemo2",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch CubeDemo",
+            "request": "launch",
+            "mainClass": "CubeDemo",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch CurvedActivityDemo",
+            "request": "launch",
+            "mainClass": "CurvedActivityDemo",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch FinalExamDemo",
+            "request": "launch",
+            "mainClass": "FinalExamDemo",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch GradeDemo",
+            "request": "launch",
+            "mainClass": "GradeDemo",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch InterfaceDemo",
+            "request": "launch",
+            "mainClass": "InterfaceDemo",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch ObjectMethods",
+            "request": "launch",
+            "mainClass": "ObjectMethods",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch PassFailExamDemo",
+            "request": "launch",
+            "mainClass": "PassFailExamDemo",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch Polymorphic",
+            "request": "launch",
+            "mainClass": "Polymorphic",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch PolymorphicInterfaceDemo",
+            "request": "launch",
+            "mainClass": "PolymorphicInterfaceDemo",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch ProtectedDemo",
+            "request": "launch",
+            "mainClass": "ProtectedDemo",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch ShowValueDemo",
+            "request": "launch",
+            "mainClass": "ShowValueDemo",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch Vehicle",
+            "request": "launch",
+            "mainClass": "Vehicle",
+            "projectName": "week_7_8cad8cff"
+        }
+    ]
+}
