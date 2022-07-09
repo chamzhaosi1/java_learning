@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Vehicle_2",
+            "request": "launch",
+            "mainClass": "exercise_3.Vehicle_2",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch Circle",
+            "request": "launch",
+            "mainClass": "exercise_6.Circle",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
+            "name": "Launch Player",
+            "request": "launch",
+            "mainClass": "Player",
+            "projectName": "week_7_8cad8cff"
+        },
+        {
+            "type": "java",
             "name": "Launch Car",
             "request": "launch",
             "mainClass": "Car",

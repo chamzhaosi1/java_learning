@@ -35,15 +35,32 @@ public class Vehicle {
     }
     
     public static void main(String[] args) {
-        Car car1 = new Car("Tesla", "12-TSL");
-        car1.horn();
-        car1.setBrandName("Tesla");
-        System.out.println("Car Brand " + car1.getBrandName());
-        Truck truck1 = new Truck();
-        truck1.setBrandName("Tesla again");
-        truck1.horn();
-        System.out.println("Track Brand " + truck1.getBrandName());
-        System.out.println("Track Brand " + truck1.brandName);
+        // Car car1 = new Car("Tesla", "12-TSL");
+        // car1.horn();
+        // car1.setBrandName("Tesla");
+        // System.out.println("Car Brand " + car1.getBrandName());
+        // Truck truck1 = new Truck();
+        // truck1.setBrandName("Tesla again");
+        // truck1.horn();
+        // System.out.println("Track Brand " + truck1.getBrandName());
+        // System.out.println("Track Brand " + truck1.brandName);
+
+        //Polymorphism
+        Vehicle [] veh = new Vehicle[2];
+        veh[0] = new Car("Honda", "City");
+        veh[1] = new Truck();
+
+        for (int i=0; i<veh.length; i++){
+            veh[i].horn();
+        }
+
+        //Because this method is declared in subclass, 
+        //then polymorphism is not allow to invoke a method which did not 
+        //exsits in the super class
+        //veh[1].pressBrake();
+
+        Truck truck = new Truck();
+        truck.pressBrake();
     }
     
 }
@@ -71,5 +88,9 @@ class Truck extends Vehicle{
 
     public void accelarate(){
         speed+=2;
+    }
+
+    public void pressBrake(){
+        System.out.println("press brake");
     }
 }
