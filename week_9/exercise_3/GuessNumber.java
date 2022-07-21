@@ -1,9 +1,10 @@
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.Random;
+import java.awt.Color;
 
 public class GuessNumber extends JFrame{
-    private int WINDOW_WIDTH = 270;
+    private int WINDOW_WIDTH = 280;
     private int WINDOW_HEIGHT = 150;
     private JLabel headlineLabel;
     private JLabel resultJLabel = new JLabel("Can you guess my number?");
@@ -11,6 +12,8 @@ public class GuessNumber extends JFrame{
     private JButton newGameBtn;
     private JPanel panel;
     private int numberInital;
+    private int lowerBorder = 1;
+    private int highBorder = 100;
 
     GuessNumber(){
         numberInital = randomNumber();
@@ -28,7 +31,7 @@ public class GuessNumber extends JFrame{
 
     private void createPanel(){
         panel = new JPanel();
-        headlineLabel = new JLabel("I have a number between 1 and 100.");
+        headlineLabel = new JLabel("I have a number between " + lowerBorder + " and "+ highBorder +".");
         textField = new JTextField(15);
         newGameBtn = new JButton("New Game");
 
@@ -46,23 +49,25 @@ public class GuessNumber extends JFrame{
          try{
             String textNumber = textField.getText();
             int guessNumber = Integer.parseInt(textNumber);
+            textField.setText("");
 
             System.out.println(textNumber);
             System.out.println(guessNumber);
 
+
             if (numberInital == guessNumber){
                 resultJLabel.setText("Congratulations, You are correct!");
+                resultJLabel.setForeground(Color.RED);
+                textField.setEditable(false);
             }else if(numberInital > guessNumber){
                 resultJLabel.setText("Too Low, try a higher number");
-                headlineLabel.setText("I have a number between " + guessNumber + " and 100.");
+                lowerBorder = guessNumber;
+                headlineLabel.setText("I have a number between " + guessNumber + " and " + highBorder + ".");
             }else{
                 resultJLabel.setText("Too High, try a lower number");
-                headlineLabel.setText("I have a number between 1 and " + guessNumber + ".");
+                highBorder = guessNumber;
+                headlineLabel.setText("I have a number between " + lowerBorder + " and " + guessNumber + ".");
             }
-
-            panel.revalidate();
-            panel.repaint();
-
          }catch(Exception ex){
             resultJLabel.setText("Please enter a valid data type");
          } 
@@ -73,6 +78,13 @@ public class GuessNumber extends JFrame{
         public void actionPerformed(ActionEvent e){
             numberInital = randomNumber();
             System.out.println(numberInital);
+
+            lowerBorder=0;
+            highBorder=100;
+            headlineLabel.setText("I have a number between " + lowerBorder + " and " + highBorder + ".");
+            resultJLabel.setText("Can you guess my number?");
+            textField.setEditable(true);
+            resultJLabel.setForeground(Color.BLACK);
         }
     }
 
