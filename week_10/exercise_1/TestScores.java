@@ -16,7 +16,6 @@ public class TestScores{
             }else {
                 total += d;
             }
-            
         }
         return total/scoresArray.length;
     }
