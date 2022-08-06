@@ -3,15 +3,11 @@ import java.io.ObjectOutputStream;
 import java.io.FileOutputStream;
 import java.io.Serializable;
 import javax.swing.*;
-
 import java.awt.Color;
 import java.awt.event.*;
 
 
-public class LableColor extends JLabel implements Serializable {
-    
-}
-
+public class LableColor extends JLabel implements Serializable{}
 class MyFrame extends JFrame{
     private final static int WIDTH = 350;
     private final static int HEIGHT = 150;
@@ -48,12 +44,7 @@ class MyFrame extends JFrame{
         panel.add(button);
     }
 
-    public static void main(String[] args) {
-        new MyFrame();
-    }
-
     public class ButtonListener implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             LableColor labelcolor = new LableColor();
@@ -76,7 +67,7 @@ class MyFrame extends JFrame{
             }
         
         try {
-            FileOutputStream outputStream = new FileOutputStream("Objects.dat");
+            FileOutputStream outputStream = new FileOutputStream("exercise_1\\Objects.dat");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
             objectOutputStream.writeObject(labelcolor);
             objectOutputStream.close();
@@ -86,5 +77,9 @@ class MyFrame extends JFrame{
             JOptionPane.showMessageDialog(null, "Erroc Occuranced", "Warning", JOptionPane.WARNING_MESSAGE);
         }
         }   
+    }
+
+    public static void main(String[] args) {
+        new MyFrame();
     }
 }

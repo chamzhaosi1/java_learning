@@ -39,19 +39,22 @@ public class ReadLableColor extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                FileInputStream inStream = new FileInputStream("Objects.dat");
+                FileInputStream inStream = new FileInputStream("exercise_1\\Objects.dat");
                 ObjectInputStream objectInputStream = new ObjectInputStream(inStream);
                 LableColor readlable = (LableColor) objectInputStream.readObject();
+                readlable.setHorizontalAlignment(JLabel.CENTER);
                 objectInputStream.close();
 
-                panel.add(readlable, BorderLayout.EAST);
+                panel.removeAll();
+                panel.add(readlable, BorderLayout.NORTH);
+                panel.add(button, BorderLayout.SOUTH);
+                panel.updateUI();
+                
             } catch (Exception ex) {
+                System.out.println(ex.getMessage());
                 JOptionPane.showMessageDialog(null, "Erroc Occuranced", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
-
-            
+            }  
         }
-
     }
 
     public static void main(String[] args) {
