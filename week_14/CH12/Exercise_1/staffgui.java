@@ -3,14 +3,12 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
-import javafx.scene.layout.Border;
-
 import java.awt.*;
 import java.awt.event.*;
 
-public class staffgui extends JFrame{
+public class Staffgui extends JFrame{
     private static final int WIDTH = 650;
-    private static final int HEIGHT = 230;
+    private static final int HEIGHT = 255;
     private JPanel mainPanel = new JPanel();
     private JTextField idTextField;
     private JTextField lsnTextField;
@@ -24,8 +22,9 @@ public class staffgui extends JFrame{
     private JButton insertButton;
     private JButton updateButton;
     private JButton clearButton; 
+    private JLabel noticeLabel;
 
-    public staffgui(){
+    public Staffgui(){
         setTitle("Staff Table");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(WIDTH, HEIGHT);
@@ -64,6 +63,8 @@ public class staffgui extends JFrame{
         telTextField = new JTextField(15);
         JPanel abovePanel = new JPanel();
         JPanel belowPanel = new JPanel();
+        JPanel belowUpPanel = new JPanel();
+        JPanel belowDownPanel = new JPanel();
 
         GridBagConstraints gbc = new GridBagConstraints();  
         GridBagLayout gbl = new GridBagLayout();  
@@ -136,20 +137,130 @@ public class staffgui extends JFrame{
         mainPanel.add(abovePanel, BorderLayout.NORTH);
 
         viewButton = new JButton("View");
+        viewButton.addActionListener(new viewButtonListener());
+
         insertButton = new JButton("Insert");
+        insertButton.addActionListener(new insertButtonListener());
+
         updateButton = new JButton("Update");
+        updateButton.addActionListener(new updateButtonListener());
+
         clearButton = new JButton("Clear");
+        clearButton.addActionListener(new clearButtonListener());
 
-        belowPanel.setLayout(new GridLayout(1, 4, 10, 50));
-        belowPanel.setBorder(new EmptyBorder(5, 0, 5, 0));
+        belowUpPanel.setLayout(new GridLayout(1, 4, 5, 5));
+        belowUpPanel.setBorder(new EmptyBorder(5, 100, 5, 100));
 
-        belowPanel.add(viewButton);
-        belowPanel.add(insertButton);
-        belowPanel.add(updateButton);
-        belowPanel.add(clearButton);
+        belowUpPanel.add(viewButton);
+        belowUpPanel.add(insertButton);
+        belowUpPanel.add(updateButton);
+        belowUpPanel.add(clearButton);
 
-        mainPanel.add(belowPanel, BorderLayout.SOUTH);
+        belowPanel.setPreferredSize(new Dimension (650, 65));
+        belowPanel.setLayout(new BorderLayout());
+        
+        belowPanel.add(belowUpPanel, BorderLayout.NORTH);
+
+        // Box box = Box.createVerticalBox();
+
+        noticeLabel = new JLabel();
+        noticeLabel.setBorder(new EmptyBorder(0, 20, 5, 100));
+        noticeLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        belowDownPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        belowDownPanel.add(noticeLabel);
+
+        belowPanel.add(belowDownPanel);
+
+        mainPanel.add(belowPanel,  BorderLayout.SOUTH);
 
     }
-    
+
+    public class viewButtonListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // TODO Auto-generated method stub
+            
+        }
+    }
+
+    public class insertButtonListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (checkAllTextFiledEmpty()){
+                noticeLabel.setText("Some of text field haven't fill in, empty data is not accepted");
+                // mainPanel.revalidate();
+                // mainPanel.repaint();
+            }else{
+                Staff staff = new Staff();
+                staff.setId(idTextField.getText());
+                staff.setLastName(lsnTextField.getText());
+                staff.setFirstName(fsnTextField.getText());
+                staff.setMi(miTextField.getText());
+                staff.setAddress(addressTextField.getText());
+                staff.setCity(cityTextField.getText());
+                staff.setState(stateTextField.getText());
+                staff.setTelephone(telTextField.getText());
+
+                new Staffdb().insertData(staff);
+            }
+
+
+        }
+    }
+
+    public class updateButtonListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // TODO Auto-generated method stub
+            
+        }
+    }
+
+    public class clearButtonListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // TODO Auto-generated method stub
+            
+        }
+    }
+
+    private boolean checkAllTextFiledEmpty(){
+        if (idTextField.getText().equals("")){
+            return true;
+        }
+
+        if (lsnTextField.getText().equals("")){
+            return true;
+        }
+
+        if (fsnTextField.getText().equals("")){
+            return true;
+        }
+
+        if (miTextField.getText().equals("")){
+            return true;
+        }
+
+        if (addressTextField.getText().equals("")){
+            return true;
+        }
+
+        if (cityTextField.getText().equals("")){
+            return true;
+        }
+
+        if (stateTextField.getText().equals("")){
+            return true;
+        }
+
+        if (telTextField.getText().equals("")){
+            return true;
+        }
+
+        return false;
+    }
 }
