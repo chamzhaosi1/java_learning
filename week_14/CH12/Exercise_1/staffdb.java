@@ -161,7 +161,76 @@ public class Staffdb{
             preparedStmt.execute();
             
         } catch (Exception e) {
-            System.out.println("Occurred some of the error, when insert data..");
+            System.out.println("Occurred some of the error, when inserting data..");
+            e.printStackTrace();
+
+        } finally{
+            dataBaseClose();
+        }
+    }
+
+    public Staff selectData(String idNumber){
+        String sql_select = "SELECT * FROM "+ TABLE_NAME +" WHERE id = ?";
+
+        try {
+            connectDataBaseWithDB();
+            PreparedStatement preparedStmt = con.prepareStatement(sql_select);
+            preparedStmt.setString(1, idNumber);
+
+            ResultSet rs = preparedStmt.executeQuery();
+
+
+            while (rs.next()){
+                Staff staff = new Staff();
+                staff.setId(rs.getString("id"));
+                staff.setLastName(rs.getString("lastName"));
+                staff.setFirstName(rs.getString("firstName"));
+                staff.setMi(rs.getString("mi"));
+                staff.setAddress(rs.getString("address"));
+                staff.setCity(rs.getString("city"));
+                staff.setState(rs.getString("state"));
+                staff.setTelephone(rs.getString("telephone"));
+                staff.setEmail(rs.getString("email"));
+
+                dataBaseClose();
+
+                return staff;
+            }
+
+            return null;
+
+
+        } catch (Exception e) {
+            System.out.println("Occurred some of the error, when selecting data..");
+            e.printStackTrace();
+
+        }finally{
+            dataBaseClose();
+        }
+
+        return null;
+    }
+
+    public void updateData(Staff staff){
+        String sql_update = "UPDATE "+ TABLE_NAME +" SET lastName = ?, firstName = ?, mi = ?, address = ?, city = ?, state = ?, telephone = ? WHERE id = ?";
+
+        try {
+            connectDataBaseWithDB();
+            PreparedStatement preparedStmt = con.prepareStatement(sql_update);
+
+            preparedStmt.setString(1, staff.getLastName());
+            preparedStmt.setString(2, staff.getFirstName());
+            preparedStmt.setString(3, staff.getMi());
+            preparedStmt.setString(4, staff.getAddress());
+            preparedStmt.setString(5, staff.getCity());
+            preparedStmt.setString(6, staff.getState());
+            preparedStmt.setString(7, staff.getTelephone());
+            preparedStmt.setString(8, staff.getId());
+
+            preparedStmt.executeUpdate();
+            
+        } catch (Exception e) {
+            System.out.println("Occurred some of the error, when inserting data..");
             e.printStackTrace();
 
         } finally{

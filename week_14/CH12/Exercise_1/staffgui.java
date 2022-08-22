@@ -143,6 +143,7 @@ public class Staffgui extends JFrame{
         insertButton.addActionListener(new insertButtonListener());
 
         updateButton = new JButton("Update");
+        updateButton.setEnabled(false);
         updateButton.addActionListener(new updateButtonListener());
 
         clearButton = new JButton("Clear");
@@ -179,8 +180,31 @@ public class Staffgui extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            // TODO Auto-generated method stub
-            
+            if (checkIdTextFiledEmpty()){
+                noticeLabel.setText("Please fill in the id number.");
+
+            }else{
+                Staff staff = new Staffdb().selectData(idTextField.getText());
+
+                if (staff == null){
+                    noticeLabel.setText("No record found!");
+                }else {
+                    insertButton.setEnabled(false);
+                    updateButton.setEnabled(true);
+                    viewButton.setEnabled(false);
+
+                    idTextField.setEditable(false); 
+                    lsnTextField.setText(staff.getLastName());
+                    fsnTextField.setText(staff.getFirstName());
+                    miTextField.setText(staff.getMi());
+                    addressTextField.setText(staff.getAddress());
+                    cityTextField.setText(staff.getCity());
+                    stateTextField.setText(staff.getState());
+                    telTextField.setText(staff.getTelephone());
+
+                    noticeLabel.setText("Record found!");
+                }
+            }
         }
     }
 
@@ -204,9 +228,11 @@ public class Staffgui extends JFrame{
                 staff.setTelephone(telTextField.getText());
 
                 new Staffdb().insertData(staff);
+
+                clearAllTextField();
+
+                noticeLabel.setText("Staff data saved successfully.");
             }
-
-
         }
     }
 
@@ -214,7 +240,34 @@ public class Staffgui extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            // TODO Auto-generated method stub
+            
+
+            if (checkAllTextFiledEmpty()){
+                noticeLabel.setText("Some of text field haven't fill in, empty data is not accepted");
+                // mainPanel.revalidate();
+                // mainPanel.repaint();
+            }else{
+                updateButton.setEnabled(false);
+                viewButton.setEnabled(true);
+                insertButton.setEnabled(true);
+                idTextField.setEditable(true);
+
+                Staff staff = new Staff();
+                staff.setId(idTextField.getText());
+                staff.setLastName(lsnTextField.getText());
+                staff.setFirstName(fsnTextField.getText());
+                staff.setMi(miTextField.getText());
+                staff.setAddress(addressTextField.getText());
+                staff.setCity(cityTextField.getText());
+                staff.setState(stateTextField.getText());
+                staff.setTelephone(telTextField.getText());
+
+                new Staffdb().updateData(staff);
+
+                clearAllTextField();
+
+                noticeLabel.setText("Staff data updated successfully.");
+            }
             
         }
     }
@@ -223,8 +276,12 @@ public class Staffgui extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            // TODO Auto-generated method stub
-            
+            clearAllTextField();
+            idTextField.setEditable(true);
+            insertButton.setEnabled(true);
+            updateButton.setEnabled(false);
+            viewButton.setEnabled(true);
+            noticeLabel.setText("Data has been clear");
         }
     }
 
@@ -262,5 +319,24 @@ public class Staffgui extends JFrame{
         }
 
         return false;
+    }
+
+    private boolean checkIdTextFiledEmpty(){
+        if (idTextField.getText().equals("")){
+            return true;
+        }
+
+        return false;
+    }
+
+    private void clearAllTextField(){
+        idTextField.setText("");
+        lsnTextField.setText("");
+        fsnTextField.setText("");
+        miTextField.setText("");
+        addressTextField.setText("");
+        cityTextField.setText("");
+        stateTextField.setText("");
+        telTextField.setText("");
     }
 }
